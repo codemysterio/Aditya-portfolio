@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya | Video Editor Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        light: '#F4F4F2',
+                        dark: '#0A0A0A',
+                        accent: '#FF4B26',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '24px',
+                        '3xl': '20px',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F4F4F2;
+            color: #0A0A0A;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dark-section {
+            background-color: #0A0A0A;
+            color: #F4F4F2;
+            position: relative;
+        }
+        
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.06"/%3E%3C/svg%3E');
+            opacity: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .dark-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.125rem;
+            color: #FF4B26;
+            letter-spacing: 0.05em;
+        }
+        
+        .dark-section .eyebrow {
+            color: #FF4B26;
+        }
+
+        .hero-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        
+        .dark-section .hover-lift:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease;
+            border: 1px solid #0A0A0A;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: #0A0A0A;
+        }
+
+        .btn-dark {
+            border: 1px solid #F4F4F2;
+        }
+        
+        .btn-dark:hover {
+            background-color: transparent;
+            color: #F4F4F2;
+        }
+
+        .btn-primary .arrow {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        #navbar {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        #navbar.scrolled {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            background-color: rgba(244, 244, 242, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 9999px;
+            margin-top: 1rem;
+            width: calc(100% - 2rem);
+        }
+
+        .path-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 1.5s ease;
+        }
+        
+        .path-line.active {
+            stroke-dashoffset: 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            opacity: 1;
+            padding-top: 1rem;
+            padding-bottom: 1.5rem;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: #FF4B26;
+        }
+
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(100%);
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .pill-badge {
+            border: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(8px);
+        }
+        
+        .dark-section .pill-badge {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.5);
+        }
+
+        .video-container {
+            background-color: #1a1a1a;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .play-icon {
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+        
+        .video-container:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .carousel-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+        
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 0.75rem)); } /* Adjust gap */
+        }
+        
+        .accent-text {
+            color: #FF4B26;
+        }
+        
+        .video-cutout {
+            display: inline-block;
+            width: 80px;
+            height: 48px;
+            border-radius: 40px;
+            background: url('https://images.unsplash.com/photo-1574717024453-354056afd6a9?q=80&w=200&auto=format&fit=crop') center/cover;
+            vertical-align: middle;
+            margin: 0 8px;
+            position: relative;
+            top: -4px;
+        }
+        
+        @media (max-width: 768px) {
+            .video-cutout {
+                width: 60px;
+                height: 36px;
+                margin: 0 4px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            .hero-word, .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .path-line {
+                stroke-dashoffset: 0 !important;
+            }
+        }
+        
+        .pricing-toggle-label.active {
+            background-color: #0A0A0A;
+            color: #F4F4F2;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex justify-between items-center w-full max-w-7xl mx-auto">
+        <a href="#" class="font-medium text-lg tracking-tight pill-badge px-5 py-2 rounded-full inline-flex items-center gap-2 hover:bg-white transition-colors">
+            <span class="w-2 h-2 rounded-full bg-accent"></span> Aditya
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+            <a href="#work" class="hover:text-accent transition-colors">Work</a>
+            <a href="#about" class="hover:text-accent transition-colors">Services</a>
+            <a href="#process" class="hover:text-accent transition-colors">Process</a>
+            <a href="#testimonials" class="hover:text-accent transition-colors">Testimonials</a>
+            <a href="#faq" class="hover:text-accent transition-colors">FAQ</a>
+            <a href="https://calendly.com/adivisualsbusiness/30min" target="_blank" class="bg-dark text-light px-5 py-2.5 rounded-full hover:bg-accent transition-colors">Book a Call</a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button id="menu-btn" class="md:hidden z-50 p-2 text-dark bg-white rounded-full shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Overlay Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-light z-40 flex flex-col justify-center items-center gap-8 text-2xl font-medium">
+        <a href="#work" class="mobile-link hover:text-accent">Work</a>
+        <a href="#about" class="mobile-link hover:text-accent">Services</a>
+        <a href="#process" class="mobile-link hover:text-accent">Process</a>
+        <a href="#testimonials" class="mobile-link hover:text-accent">Testimonials</a>
+        <a href="#faq" class="mobile-link hover:text-accent">FAQ</a>
+        <a href="https://calendly.com/adivisualsbusiness/30min" target="_blank" class="bg-dark text-light px-8 py-3 rounded-full text-lg mt-4">Book a Call</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6 max-w-5xl mx-auto flex flex-col items-center text-center">
+        <div class="pill-badge px-4 py-1.5 rounded-full text-sm font-medium text-gray-700 mb-8 inline-flex items-center gap-2 reveal">
+            <span class="text-green-500">â—</span> Booking Open â€” 2 Spots Left
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-semibold tracking-tight text-dark mb-6 leading-[1.1] max-w-4xl" id="hero-heading">
+            Cinematic Edits for Bold <span class="video-cutout"></span> Creators & Brands
+        </h1>
+        
+        <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl reveal">
+            I help YouTubers, creators, and brands turn raw footage into scroll-stopping, story-driven videos â€” fast, polished, and built to keep people watching.
+        </p>
+        
+        <a href="https://calendly.com/adivisualsbusiness/30min" target="_blank" class="btn-primary bg-dark text-light px-8 py-4 rounded-full text-lg font-medium inline-flex items-center gap-2 reveal">
+            Book a Free Call <span class="arrow">â†’</span>
+        </a>
+        
+        <div class="mt-16 text-sm text-gray-500 font-medium reveal flex items-center gap-4 justify-center">
+            <div class="flex -space-x-2">
+                <img src="https://i.pravatar.cc/100?img=1" class="w-8 h-8 rounded-full border-2 border-light" alt="Creator">
+                <img src="https://i.pravatar.cc/100?img=2" class="w-8 h-8 rounded-full border-2 border-light" alt="Creator">
+                <img src="https://i.pravatar.cc/100?img=3" class="w-8 h-8 rounded-full border-2 border-light" alt="Creator">
+            </div>
+            Trusted by 30+ creators and brands worldwide
+        </div>
+    </section>
+
+    <!-- Showreel Grid -->
+    <section id="work" class="px-4 md:px-8 pb-24 max-w-7xl mx-auto reveal">
+        <div class="bg-dark p-4 md:p-6 rounded-[32px] md:rounded-[40px]">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Large Video -->
+                <div class="md:col-span-2 md:row-span-2 video-container aspect-video group cursor-pointer hover-lift">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="Showreel">
+                    <div class="absolute top-4 left-4 bg-black/50 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium">Showreel 2026</div>
+                    <div class="absolute top-1/2 left-1/2 play-icon bg-accent w-16 h-16 rounded-full flex items-center justify-center shadow-lg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </div>
+                </div>
+                
+                <!-- Small Videos -->
+                <div class="video-container aspect-square md:aspect-auto md:h-full group cursor-pointer hover-lift">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" alt="Project">
+                </div>
+                <div class="video-container aspect-square md:aspect-auto md:h-full group cursor-pointer hover-lift">
+                    <img src="https://images.unsplash.com/photo-1516280440503-6c703b0af48b?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" alt="Project">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Value Strip -->
+    <section id="about" class="py-24 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 reveal flex flex-col lg:flex-row items-center gap-12 lg:gap-8 justify-between">
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3 w-full lg:w-1/3">
+                <span class="pill-badge px-4 py-2 rounded-full text-sm font-medium">Storytelling</span>
+                <span class="pill-badge px-4 py-2 rounded-full text-sm font-medium">Color Grading</span>
+                <span class="pill-badge px-4 py-2 rounded-full text-sm font-medium">Sound Design</span>
+            </div>
+            
+            <div class="text-center lg:text-left w-full lg:w-1/3">
+                <span class="eyebrow block mb-4">Hello!</span>
+                <p class="text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
+                    I'm Aditya, a video editor who turns raw footage into content people actually finish watching. From long-form YouTube stories to punchy short-form cuts and polished brand films, I focus on pacing, sound, and story â€” so every edit feels intentional, not just trimmed.
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center lg:justify-end gap-3 w-full lg:w-1/3">
+                <span class="pill-badge px-4 py-2 rounded-full text-sm font-medium">Motion Graphics</span>
+                <span class="pill-badge px-4 py-2 rounded-full text-sm font-medium">Fast Turnaround</span>
+                <span class="pill-badge px-4 py-2 rounded-full text-sm font-medium">Retention-Focused Edits</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-32 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-20 reveal">
+            <span class="eyebrow block mb-4">Our Process, Explained</span>
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight">Here's How It Works</h2>
+        </div>
+        
+        <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center md:text-left">
+            <!-- SVG Connectors (Desktop only) -->
+            <svg class="hidden md:block absolute top-12 left-[20%] w-[25%] h-16 pointer-events-none text-gray-300" style="z-index:-1" overflow="visible">
+                <path class="path-line" d="M0,0 C50,0 50,40 100,40" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6"/>
+            </svg>
+            <svg class="hidden md:block absolute top-12 left-[55%] w-[25%] h-16 pointer-events-none text-gray-300" style="z-index:-1" overflow="visible">
+                <path class="path-line" d="M0,40 C50,40 50,0 100,0" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6"/>
+            </svg>
+
+            <!-- Card 1 -->
+            <div class="bg-white p-8 rounded-[24px] shadow-sm border border-gray-100 hover-lift reveal">
+                <div class="text-accent font-serif italic text-3xl mb-4">1</div>
+                <h3 class="text-xl font-semibold mb-3">Send Your Footage</h3>
+                <p class="text-gray-600 leading-relaxed">Share your raw clips, brief, and references through a simple upload link. No back-and-forth, no confusion.</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="bg-white p-8 rounded-[24px] shadow-sm border border-gray-100 hover-lift reveal md:mt-12">
+                <div class="text-accent font-serif italic text-3xl mb-4">2</div>
+                <h3 class="text-xl font-semibold mb-3">Get a First Draft</h3>
+                <p class="text-gray-600 leading-relaxed">I turn it around fast â€” usually within 48â€“72 hours â€” with pacing, color, sound, and captions already in place.</p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="bg-white p-8 rounded-[24px] shadow-sm border border-gray-100 hover-lift reveal">
+                <div class="text-accent font-serif italic text-3xl mb-4">3</div>
+                <h3 class="text-xl font-semibold mb-3">Refine & Deliver</h3>
+                <p class="text-gray-600 leading-relaxed">You leave feedback, I revise until it's exactly right, then you get final files ready to post.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-28 px-6" style="background-color:#EDEDED;">
+        <!-- Header -->
+        <div class="max-w-5xl mx-auto text-center mb-16 reveal">
+            <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px;">
+                <span style="height:1px;width:36px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+                <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;letter-spacing:0.05em;color:#FF4B26;font-weight:400;">Client Feedback</span>
+                <span style="height:1px;width:36px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+            </div>
+            <h2 style="font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:#0A0A0A;margin-bottom:14px;">
+                Don't Just Take <em style="font-family:'Playfair Display',serif;font-style:italic;font-weight:600;">My Word</em>
+            </h2>
+            <p style="color:#999;font-size:0.95rem;">Real feedback from creators and brands I've worked with.</p>
+        </div>
+
+        <!-- Main Bento Grid -->
+        <div class="max-w-5xl mx-auto relative reveal">
+
+            <!-- Handwritten annotation: Real Conversations -->
+            <div style="position:absolute;left:-180px;top:20px;pointer-events:none;" class="hidden lg:block">
+                <img src="assets/annotation-real-conversations.png" alt="Real Conversations" style="width:160px;opacity:0.9;">
+            </div>
+
+            <!-- Handwritten annotation: Client Feedback -->
+            <div style="position:absolute;right:-185px;top:160px;pointer-events:none;" class="hidden lg:block">
+                <img src="assets/annotation-client-feedback.png" alt="Client Feedback" style="width:160px;opacity:0.9;">
+            </div>
+
+            <!-- 3-column grid (top area) -->
+            <div style="display:grid;grid-template-columns:1.05fr 1fr 0.95fr;gap:12px;align-items:start;">
+
+                <!-- COL 1: Video -->
+                <div style="border-radius:18px;overflow:hidden;background:#111;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+                    <video src="testimonials/AQOOF0d5V8G5eN3iHTqmT4tM7uzXMtgULMkliztE4Gk1_mvRIIjSHd1ZEv4JM3OU1R9CIF8_6uRCKxPv4JBeqUqf9t_LQDmA-1n0Ds0.mp4" controls playsinline style="width:100%;display:block;"></video>
+                </div>
+
+                <!-- COL 2: Walter + Alex + Bro stacked -->
+                <div style="display:flex;flex-direction:column;gap:12px;">
+
+                    <!-- Walter card -->
+                    <div class="wa-card">
+                        <div class="wa-header">
+                            <span class="wa-name">Walter</span><span class="wa-time">7:16 PM</span>
+                            <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        </div>
+                        <div class="wa-bubble">Great job by him recently</div>
+                        <div class="wa-bubble">❤️</div>
+                        <div class="wa-bubble">walter is liking the videos</div>
+                        <div class="wa-bubble">nice job</div>
+                        <div class="wa-bubble">also</div>
+                        <div class="wa-bubble">💪 🙏</div>
+                    </div>
+
+                    <!-- Alex card -->
+                    <div class="wa-card">
+                        <div class="wa-header">
+                            <span class="wa-name">Alex</span><span class="wa-time">2:30 PM</span>
+                            <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        </div>
+                        <div class="wa-bubble">hell yeah</div>
+                        <div class="wa-bubble">❤️</div>
+                    </div>
+
+                    <!-- Bro card -->
+                    <div class="wa-card">
+                        <div class="wa-header">
+                            <span class="wa-name">Bro</span><span class="wa-time">9:14 PM</span>
+                            <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        </div>
+                        <div class="wa-bubble wa-inline">Banger bc</div>
+                        <div class="wa-bubble wa-inline">nice job</div>
+                        <div class="wa-bubble" style="font-size:1.2rem;">🤝 🤝 🤝 😘 😘</div>
+                    </div>
+
+                </div>
+
+                <!-- COL 3: Client + Creator + Listener stacked -->
+                <div style="display:flex;flex-direction:column;gap:12px;">
+
+                    <!-- Client card -->
+                    <div class="wa-card">
+                        <div class="wa-header">
+                            <span class="wa-name">Client</span><span class="wa-time">2:07 PM</span>
+                            <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        </div>
+                        <div class="wa-bubble">thanks</div>
+                        <div class="wa-bubble">lovely ❤️</div>
+                    </div>
+
+                    <!-- Creator card -->
+                    <div class="wa-card">
+                        <div class="wa-header">
+                            <span class="wa-name">Creator</span><span class="wa-time">2:22 AM</span>
+                            <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        </div>
+                        <div class="wa-bubble">lovely work</div>
+                        <div class="wa-bubble">both reels were G</div>
+                    </div>
+
+                    <!-- Listener card -->
+                    <div class="wa-card">
+                        <div class="wa-header">
+                            <span class="wa-name">Listener</span><span class="wa-time">8:50 PM</span>
+                            <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        </div>
+                        <div class="wa-bubble">oh my god</div>
+                        <div class="wa-bubble wa-inline">thats really good</div>
+                        <div class="wa-bubble">but</div>
+                        <div class="wa-bubble">dont put any music and dont touch the original audio</div>
+                        <div class="wa-bubble">just stk</div>
+                    </div>
+
+                </div>
+            </div><!-- end 3-col grid -->
+
+            <!-- Bottom Row: Client chat (left) + W comment (right, wider) -->
+            <div style="display:grid;grid-template-columns:1.05fr 1.95fr;gap:12px;margin-top:12px;">
+
+                <!-- Client bottom card -->
+                <div class="wa-card">
+                    <div class="wa-header">
+                        <span class="wa-name">Client</span><span class="wa-time">1:27 AM</span>
+                        <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                    </div>
+                    <div class="wa-bubble">hey</div>
+                    <div class="wa-bubble">i like it</div>
+                    <div class="wa-bubble">good job broski</div>
+                </div>
+
+                <!-- W comment card -->
+                <div class="wa-card" style="display:flex;align-items:flex-start;gap:14px;padding:18px 20px;">
+                    <div style="width:40px;height:40px;border-radius:50%;background:#3b5bdb;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:1rem;flex-shrink:0;">W</div>
+                    <div>
+                        <div style="font-size:0.75rem;color:#aaa;margin-bottom:6px;">Just now</div>
+                        <p style="font-size:0.92rem;color:#333;line-height:1.6;margin:0;">Just want to say; I believe Aditya has edited this, excellent job my man. Very clean all around and massive improvements compared to before, solid job, keep it up 👍</p>
+                    </div>
+                </div>
+
+            </div><!-- end bottom row -->
+
+        </div><!-- end max-w-5xl -->
+    </section>
+
+    <style>
+        .wa-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 18px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+        }
+        .wa-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .wa-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #111;
+        }
+        .wa-time {
+            font-size: 0.82rem;
+            color: #aaa;
+            flex: 1;
+        }
+        .wa-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .wa-bubble {
+            display: block;
+            background: #f0f0f0;
+            border-radius: 12px;
+            padding: 8px 13px;
+            font-size: 0.95rem;
+            color: #222;
+            margin-bottom: 6px;
+            width: fit-content;
+            max-width: 100%;
+            line-height: 1.45;
+        }
+        .wa-inline {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        @media (max-width: 768px) {
+            .max-w-5xl > div[style*="grid-template-columns:1.05fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            .max-w-5xl > div[style*="grid-template-columns:1.05fr 1.95fr"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+    <!-- FAQ Section -->
+    <section id="faq" class="py-32 px-6 max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-16">
+            <!-- Left: Contact -->
+            <div class="md:w-1/3 reveal">
+                <span class="eyebrow block mb-4">FAQ</span>
+                <h2 class="text-4xl font-semibold tracking-tight mb-8">Your Questions, Answered</h2>
+                
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 mt-8">
+                    <img src="https://i.pravatar.cc/100?img=68" class="w-16 h-16 rounded-full mb-6" alt="Aditya">
+                    <h3 class="text-xl font-medium mb-6">Have more questions? Book a free discovery call.</h3>
+                    <a href="https://calendly.com/adivisualsbusiness/30min" target="_blank" class="btn-primary inline-flex bg-dark text-light px-6 py-3 rounded-full text-sm font-medium mb-4">
+                        Book a Discovery Call <span class="arrow">â†’</span>
+                    </a>
+                    <p class="text-sm text-gray-500">Or, email me at <a href="mailto:hello@aditya.com" class="text-accent hover:underline">hello@aditya.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Right: Accordion -->
+            <div class="md:w-2/3 reveal">
+                <div class="divide-y divide-gray-200 border-y border-gray-200">
+                    
+                    <div class="faq-item group cursor-pointer py-6">
+                        <div class="flex justify-between items-center gap-4">
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What's the difference between a subscription and a one-off project?</h4>
+                            <span class="faq-icon text-gray-400 text-2xl">+</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 leading-relaxed">
+                            A subscription covers ongoing, unlimited edit requests at a fixed monthly rate â€” ideal for creators posting regularly. A one-off project is a fixed-price quote for a single video or campaign.
+                        </div>
+                    </div>
+
+                    <div class="faq-item group cursor-pointer py-6">
+                        <div class="flex justify-between items-center gap-4">
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">How fast is the turnaround?</h4>
+                            <span class="faq-icon text-gray-400 text-2xl">+</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 leading-relaxed">
+                            Most first drafts are delivered within 48â€“72 hours, depending on footage length and complexity.
+                        </div>
+                    </div>
+
+                    <div class="faq-item group cursor-pointer py-6">
+                        <div class="flex justify-between items-center gap-4">
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">How many requests can I make?</h4>
+                            <span class="faq-icon text-gray-400 text-2xl">+</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 leading-relaxed">
+                            On the subscription plan, as many as you need â€” one video is worked on at a time to keep quality high, with a queue for the next.
+                        </div>
+                    </div>
+
+                    <div class="faq-item group cursor-pointer py-6">
+                        <div class="flex justify-between items-center gap-4">
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What types of video do you edit?</h4>
+                            <span class="faq-icon text-gray-400 text-2xl">+</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 leading-relaxed">
+                            YouTube long-form, short-form Reels/TikToks, brand films, ads, and documentary-style content.
+                        </div>
+                    </div>
+
+                    <div class="faq-item group cursor-pointer py-6">
+                        <div class="flex justify-between items-center gap-4">
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What tools do you use?</h4>
+                            <span class="faq-icon text-gray-400 text-2xl">+</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 leading-relaxed">
+                            Premiere Pro, DaVinci Resolve, After Effects, and industry-standard sound and color tools.
+                        </div>
+                    </div>
+
+                    <div class="faq-item group cursor-pointer py-6">
+                        <div class="flex justify-between items-center gap-4">
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">Can I pause the subscription?</h4>
+                            <span class="faq-icon text-gray-400 text-2xl">+</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 leading-relaxed">
+                            Yes, you can pause or cancel anytime with no long-term lock-in.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item group cursor-pointer py-6">
+                        <div class="flex justify-between items-center gap-4">
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">Do you offer motion graphics too?</h4>
+                            <span class="faq-icon text-gray-400 text-2xl">+</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 leading-relaxed">
+                            Yes â€” titles, lower thirds, and light motion graphics are included in every plan.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA & Footer (Dark Section) -->
+    <section class="dark-section pt-32 pb-10 px-6 flex flex-col items-center text-center rounded-t-[40px] mt-10">
+        <div class="max-w-3xl mx-auto mb-20 reveal">
+            <div class="eyebrow mb-6 flex items-center justify-center gap-4">
+                <span style="height:1px;width:48px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+                2 spots available
+                <span style="height:1px;width:48px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+            </div>
+            
+            <h2 class="text-5xl md:text-7xl font-semibold tracking-tight text-light mb-8">Let's Connect</h2>
+            <p class="text-xl text-gray-400 mb-10 max-w-xl mx-auto">Have a project in mind? I'm available for new work or just to chat about your next video.</p>
+            
+            <a href="https://calendly.com/adivisualsbusiness/30min" target="_blank" class="btn-primary btn-dark bg-transparent text-light px-8 py-4 rounded-full text-lg font-medium inline-flex items-center gap-2">
+                Book a Free Intro Call <span class="arrow">â†’</span>
+            </a>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="w-full max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 reveal">
+            <div class="text-gray-400 text-sm">
+                Â© Aditya, 2026
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+            </div>
+        </footer>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        // Hero Word Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const heading = document.getElementById('hero-heading');
+            // We'll just fade in the entire heading for simplicity since it contains HTML (the cutout)
+            // But we can animate elements within it.
+            
+            // Scroll Reveal
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                reveals.forEach(reveal => {
+                    const revealTop = reveal.getBoundingClientRect().top;
+                    if (revealTop < windowHeight - 50) {
+                        reveal.classList.add('active');
+                    }
+                });
+                
+                // SVG Path Animation
+                const paths = document.querySelectorAll('.path-line');
+                paths.forEach(path => {
+                    const pathTop = path.getBoundingClientRect().top;
+                    if (pathTop < windowHeight - 100) {
+                        path.classList.add('active');
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger on load
+
+            // Navbar Sticky Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            let menuOpen = false;
+            
+            const toggleMenu = () => {
+                menuOpen = !menuOpen;
+                if (menuOpen) {
+                    mobileMenu.classList.add('open');
+                    menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileMenu.classList.remove('open');
+                    menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+                    document.body.style.overflow = '';
+                }
+            };
+            
+            menuBtn.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', () => {
+                if(menuOpen) toggleMenu();
+            }));
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all
+                    faqItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Open clicked if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Pricing Toggle
+            const btnMonthly = document.getElementById('toggle-monthly');
+            const btnCustom = document.getElementById('toggle-custom');
+            const priceDisplay = document.getElementById('price-display');
+            const priceDesc = document.getElementById('price-desc');
+            
+            btnMonthly.addEventListener('click', () => {
+                btnMonthly.classList.add('active', 'bg-dark', 'text-light');
+                btnMonthly.classList.remove('text-gray-600');
+                btnCustom.classList.remove('active', 'bg-dark', 'text-light');
+                btnCustom.classList.add('text-gray-600');
+                
+                priceDisplay.innerHTML = '$999<span class="text-xl text-gray-400 font-normal">/mo</span>';
+                priceDesc.textContent = 'Unlimited edit requests, one active at a time.';
+            });
+            
+            btnCustom.addEventListener('click', () => {
+                btnCustom.classList.add('active', 'bg-dark', 'text-light');
+                btnCustom.classList.remove('text-gray-600');
+                btnMonthly.classList.remove('active', 'bg-dark', 'text-light');
+                btnMonthly.classList.add('text-gray-600');
+                
+                priceDisplay.innerHTML = 'Custom<span class="text-xl text-gray-400 font-normal"> quote</span>';
+                priceDesc.textContent = 'For single videos or specialized campaigns.';
+            });
+            
+            // Hero words staggered fade (Bonus)
+            const heroHeading = document.getElementById('hero-heading');
+            // Reconstruct heading to animate words (skipping the span cutout for safety, or doing it carefully)
+            // It's safer to just let the full block reveal to avoid breaking the inline block layout.
+        });
+    </script>
+</body>
+</html>
