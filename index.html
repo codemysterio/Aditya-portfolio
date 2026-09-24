@@ -368,6 +368,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Horizontal Video 1 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
+                         onclick="openVideoModal('https://youtu.be/BTAbs0H6bgg', 'horizontal')"
                          data-video-url="https://youtu.be/BTAbs0H6bgg"
                          data-video-aspect="horizontal">
                         <img src="https://i.ytimg.com/vi/BTAbs0H6bgg/hqdefault.jpg"
@@ -398,6 +399,7 @@
 
                     <!-- Horizontal Video 2 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
+                         onclick="openVideoModal('https://youtu.be/GDDuItNbUmM', 'horizontal')"
                          data-video-url="https://youtu.be/GDDuItNbUmM"
                          data-video-aspect="horizontal">
                         <img src="https://i.ytimg.com/vi/GDDuItNbUmM/hqdefault.jpg"
@@ -428,6 +430,7 @@
 
                     <!-- Horizontal Video 3 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
+                         onclick="openVideoModal('https://youtu.be/AA1T1q3ROIA', 'horizontal')"
                          data-video-url="https://youtu.be/AA1T1q3ROIA"
                          data-video-aspect="horizontal">
                         <img src="https://i.ytimg.com/vi/AA1T1q3ROIA/hqdefault.jpg"
@@ -468,6 +471,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
                     <!-- Vertical Video 1 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-[9/16] bg-[#151515] border border-white/10 hover-lift shadow-xl"
+                         onclick="openVideoModal('https://youtube.com/shorts/cCahe8jHl4w', 'vertical')"
                          data-video-url="https://youtube.com/shorts/cCahe8jHl4w"
                          data-video-aspect="vertical">
                         <img src="https://i.ytimg.com/vi/cCahe8jHl4w/hqdefault.jpg"
@@ -498,6 +502,7 @@
 
                     <!-- Vertical Video 2 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-[9/16] bg-[#151515] border border-white/10 hover-lift shadow-xl"
+                         onclick="openVideoModal('https://youtube.com/shorts/Lew-x_vODL0', 'vertical')"
                          data-video-url="https://youtube.com/shorts/Lew-x_vODL0"
                          data-video-aspect="vertical">
                         <img src="https://i.ytimg.com/vi/Lew-x_vODL0/hqdefault.jpg"
@@ -528,6 +533,7 @@
 
                     <!-- Vertical Video 3 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-[9/16] bg-[#151515] border border-white/10 hover-lift shadow-xl"
+                         onclick="openVideoModal('https://youtube.com/shorts/yKMJvJL6qoA', 'vertical')"
                          data-video-url="https://youtube.com/shorts/yKMJvJL6qoA"
                          data-video-aspect="vertical">
                         <img src="https://i.ytimg.com/vi/yKMJvJL6qoA/hqdefault.jpg"
@@ -1279,17 +1285,17 @@
     </section>
  
     <!-- Video Lightbox Modal -->
-    <div id="video-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true" aria-label="Video Player">
+    <div id="video-modal" class="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300" style="display: none;" role="dialog" aria-modal="true" aria-label="Video Player">
         <!-- Close Button -->
-        <button id="video-modal-close" class="absolute top-5 right-5 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:scale-105" aria-label="Close video player">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <button id="video-modal-close" onclick="closeVideoModal()" class="absolute top-5 right-5 z-30 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:scale-105 cursor-pointer shadow-lg" aria-label="Close video player">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
 
         <!-- Dynamic Container (Sized based on horizontal vs vertical) -->
-        <div id="video-modal-container" class="relative w-full max-w-4xl aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-300">
+        <div id="video-modal-container" class="relative w-full max-w-4xl aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/20 transition-all duration-300">
             <iframe id="video-modal-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
@@ -1378,121 +1384,110 @@
                 });
             });
 
-            // Pricing Toggle
-            const btnMonthly = document.getElementById('toggle-monthly');
-            const btnCustom = document.getElementById('toggle-custom');
-            const priceDisplay = document.getElementById('price-display');
-            const priceDesc = document.getElementById('price-desc');
-            
-            btnMonthly.addEventListener('click', () => {
-                btnMonthly.classList.add('active', 'bg-dark', 'text-light');
-                btnMonthly.classList.remove('text-gray-600');
-                btnCustom.classList.remove('active', 'bg-dark', 'text-light');
-                btnCustom.classList.add('text-gray-600');
-                
-                priceDisplay.innerHTML = '$999<span class="text-xl text-gray-400 font-normal">/mo</span>';
-                priceDesc.textContent = 'Unlimited edit requests, one active at a time.';
-            });
-            
-            btnCustom.addEventListener('click', () => {
-                btnCustom.classList.add('active', 'bg-dark', 'text-light');
-                btnCustom.classList.remove('text-gray-600');
-                btnMonthly.classList.remove('active', 'bg-dark', 'text-light');
-                btnMonthly.classList.add('text-gray-600');
-                
-                priceDisplay.innerHTML = 'Custom<span class="text-xl text-gray-400 font-normal"> quote</span>';
-                priceDesc.textContent = 'For single videos or specialized campaigns.';
-            });
-            
-            // Hero words staggered fade (Bonus)
-            const heroHeading = document.getElementById('hero-heading');
-            // Reconstruct heading to animate words (skipping the span cutout for safety, or doing it carefully)
-            // It's safer to just let the full block reveal to avoid breaking the inline block layout.
-
-            // Video Modal Functionality
-            const videoModal = document.getElementById('video-modal');
-            const modalContainer = document.getElementById('video-modal-container');
-            const modalIframe = document.getElementById('video-modal-iframe');
-            const modalCloseBtn = document.getElementById('video-modal-close');
+            // Video Cards event listener binding
             const videoCards = document.querySelectorAll('.video-card');
-
-            function parseVideoUrl(input) {
-                if (!input) return '';
-                const trimmed = input.trim();
-                if (trimmed.includes('embed/')) return trimmed;
-                
-                // YouTube Shorts: youtube.com/shorts/VIDEO_ID
-                const shortsMatch = trimmed.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
-                if (shortsMatch) return `https://www.youtube.com/embed/${shortsMatch[1]}?autoplay=1&rel=0`;
-                
-                // YouTube Watch: youtube.com/watch?v=VIDEO_ID
-                const watchMatch = trimmed.match(/[?&]v=([a-zA-Z0-9_-]+)/);
-                if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}?autoplay=1&rel=0`;
-                
-                // Shortened youtu.be/VIDEO_ID
-                const youtuMatch = trimmed.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
-                if (youtuMatch) return `https://www.youtube.com/embed/${youtuMatch[1]}?autoplay=1&rel=0`;
-                
-                // Vimeo: vimeo.com/VIDEO_ID
-                const vimeoMatch = trimmed.match(/vimeo\.com\/(\d+)/);
-                if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`;
-                
-                // Raw 11-character YouTube ID
-                if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
-                    return `https://www.youtube.com/embed/${trimmed}?autoplay=1&rel=0`;
-                }
-                
-                return trimmed;
-            }
-
-            function openVideoModal(url, aspect) {
-                if (!videoModal || !modalIframe || !modalContainer) return;
-                const embedUrl = parseVideoUrl(url);
-                
-                if (aspect === 'vertical') {
-                    modalContainer.className = 'relative w-full max-w-[360px] aspect-[9/16] max-h-[85vh] bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-300';
-                } else {
-                    modalContainer.className = 'relative w-full max-w-4xl aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-300';
-                }
-                
-                modalIframe.src = embedUrl;
-                videoModal.classList.remove('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeVideoModal() {
-                if (!videoModal || !modalIframe) return;
-                modalIframe.src = '';
-                videoModal.classList.add('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = '';
-            }
-
             videoCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const url = card.getAttribute('data-video-url');
                     const aspect = card.getAttribute('data-video-aspect') || 'horizontal';
-                    openVideoModal(url, aspect);
+                    window.openVideoModal(url, aspect);
                 });
             });
 
+            // Video Modal backdrop & close button bindings
+            const videoModal = document.getElementById('video-modal');
+            const modalCloseBtn = document.getElementById('video-modal-close');
             if (modalCloseBtn) {
-                modalCloseBtn.addEventListener('click', closeVideoModal);
+                modalCloseBtn.addEventListener('click', () => window.closeVideoModal());
             }
-
             if (videoModal) {
                 videoModal.addEventListener('click', (e) => {
                     if (e.target === videoModal) {
-                        closeVideoModal();
+                        window.closeVideoModal();
                     }
                 });
             }
-
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && videoModal && !videoModal.classList.contains('pointer-events-none')) {
-                    closeVideoModal();
+                if (e.key === 'Escape' && videoModal && videoModal.style.display !== 'none') {
+                    window.closeVideoModal();
                 }
             });
         });
+
+        // Global Video Modal Functions
+        function parseVideoUrl(input) {
+            if (!input) return '';
+            const trimmed = input.trim();
+            if (trimmed.includes('embed/')) return trimmed;
+            
+            // YouTube Shorts: youtube.com/shorts/VIDEO_ID
+            const shortsMatch = trimmed.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
+            if (shortsMatch) return `https://www.youtube.com/embed/${shortsMatch[1]}?autoplay=1&rel=0&playsinline=1`;
+            
+            // YouTube Watch: youtube.com/watch?v=VIDEO_ID
+            const watchMatch = trimmed.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+            if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}?autoplay=1&rel=0&playsinline=1`;
+            
+            // Shortened youtu.be/VIDEO_ID
+            const youtuMatch = trimmed.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+            if (youtuMatch) return `https://www.youtube.com/embed/${youtuMatch[1]}?autoplay=1&rel=0&playsinline=1`;
+            
+            // Vimeo: vimeo.com/VIDEO_ID
+            const vimeoMatch = trimmed.match(/vimeo\.com\/(\d+)/);
+            if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`;
+            
+            // Raw 11-character YouTube ID
+            if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
+                return `https://www.youtube.com/embed/${trimmed}?autoplay=1&rel=0&playsinline=1`;
+            }
+            
+            return trimmed;
+        }
+
+        window.openVideoModal = function(url, aspect) {
+            const videoModal = document.getElementById('video-modal');
+            const modalContainer = document.getElementById('video-modal-container');
+            const modalIframe = document.getElementById('video-modal-iframe');
+            if (!videoModal || !modalIframe || !modalContainer) return;
+            
+            const embedUrl = parseVideoUrl(url);
+            
+            if (aspect === 'vertical') {
+                modalContainer.style.maxWidth = '380px';
+                modalContainer.style.width = '100%';
+                modalContainer.style.aspectRatio = '9 / 16';
+                modalContainer.style.maxHeight = '85vh';
+                modalContainer.className = 'relative w-full max-w-[380px] aspect-[9/16] max-h-[85vh] bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/20 transition-all duration-300';
+            } else {
+                modalContainer.style.maxWidth = '920px';
+                modalContainer.style.width = '100%';
+                modalContainer.style.aspectRatio = '16 / 9';
+                modalContainer.style.maxHeight = '85vh';
+                modalContainer.className = 'relative w-full max-w-4xl aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/20 transition-all duration-300';
+            }
+            
+            modalIframe.src = embedUrl;
+            videoModal.style.display = 'flex';
+            requestAnimationFrame(() => {
+                videoModal.classList.remove('opacity-0', 'pointer-events-none');
+                videoModal.classList.add('opacity-100', 'pointer-events-auto');
+            });
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeVideoModal = function() {
+            const videoModal = document.getElementById('video-modal');
+            const modalIframe = document.getElementById('video-modal-iframe');
+            if (!videoModal || !modalIframe) return;
+            
+            modalIframe.src = '';
+            videoModal.classList.remove('opacity-100', 'pointer-events-auto');
+            videoModal.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                videoModal.style.display = 'none';
+            }, 200);
+            document.body.style.overflow = '';
+        };
     </script>
     <!-- Calendly widget assets -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
