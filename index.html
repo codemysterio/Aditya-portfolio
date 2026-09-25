@@ -180,6 +180,10 @@
             transform: rotate(45deg);
             color: #FF4B26;
         }
+        
+        .faq-item.active h4 {
+            color: #FF4B26;
+        }
 
         #mobile-menu {
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -193,6 +197,21 @@
             border: 1px solid rgba(0,0,0,0.1);
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(8px);
+        }
+
+        @keyframes heroFloatLeft {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.4deg); }
+        }
+        @keyframes heroFloatRight {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(-0.4deg); }
+        }
+        .hero-card-left {
+            animation: heroFloatLeft 7s ease-in-out infinite;
+        }
+        .hero-card-right {
+            animation: heroFloatRight 8s ease-in-out infinite 0.7s;
         }
         
         .dark-section .pill-badge {
@@ -316,30 +335,66 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="pt-40 pb-20 px-6 max-w-5xl mx-auto flex flex-col items-center text-center">
-        <div class="pill-badge px-4 py-1.5 rounded-full text-sm font-medium text-gray-700 mb-8 inline-flex items-center gap-2 reveal">
-            <span class="text-green-500">&#10003;</span> Booking Open &mdash; 2 Spots Left
+    <section class="relative pt-36 pb-20 md:pt-44 md:pb-28 px-4 sm:px-6 max-w-7xl xl:max-w-[1420px] 2xl:max-w-[1580px] mx-auto flex flex-col items-center text-center overflow-hidden lg:overflow-visible">
+        
+        <!-- Ambient Warm Glow Background -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[420px] bg-gradient-to-tr from-orange-100/30 via-amber-50/20 to-transparent rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <!-- Left Flanking Card: Raw Footage In (Desktop) -->
+        <div class="hidden lg:block absolute lg:-left-16 xl:-left-28 2xl:-left-36 top-[15%] w-[230px] xl:w-[280px] 2xl:w-[320px] pointer-events-none select-none z-10 hero-card-left">
+            <img src="assets/hero-raw-card.png" alt="Raw footage in" class="w-full h-auto drop-shadow-2xl">
         </div>
-        
-        <h1 class="text-5xl md:text-7xl font-semibold tracking-tight text-dark mb-6 leading-[1.1] max-w-4xl" id="hero-heading">
-            I make ideas easier to see, <br>understand, and remember.
-        </h1>
-        
-        <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl reveal">
-            I help YouTubers, creators, and brands turn raw footage into scroll-stopping, story-driven videos &mdash; fast, polished, and built to keep people watching.
-        </p>
-        
-        <a href="#contact" class="btn-primary bg-dark text-light px-8 py-4 rounded-full text-lg font-medium inline-flex items-center gap-2 reveal">
-            Book a Free Call <span class="arrow">&rarr;</span>
-        </a>
-        
-        <div class="mt-16 text-sm text-gray-500 font-medium reveal flex items-center gap-4 justify-center">
-            <div class="flex -space-x-2">
-                <img src="https://i.pravatar.cc/100?img=1" class="w-8 h-8 rounded-full border-2 border-light" alt="Creator">
-                <img src="https://i.pravatar.cc/100?img=2" class="w-8 h-8 rounded-full border-2 border-light" alt="Creator">
-                <img src="https://i.pravatar.cc/100?img=3" class="w-8 h-8 rounded-full border-2 border-light" alt="Creator">
+
+        <!-- Right Flanking Card: Scroll-stopping Videos Out (Desktop) -->
+        <div class="hidden lg:block absolute lg:-right-16 xl:-right-28 2xl:-right-36 top-[14%] w-[230px] xl:w-[280px] 2xl:w-[320px] pointer-events-none select-none z-10 hero-card-right">
+            <img src="assets/hero-edited-card.png" alt="Scroll-stopping videos out" class="w-full h-auto drop-shadow-2xl">
+        </div>
+
+        <!-- Centered Content Stack -->
+        <div class="relative z-10 max-w-3xl xl:max-w-5xl 2xl:max-w-6xl mx-auto flex flex-col items-center">
+            
+            <!-- Booking Pill Badge -->
+            <div class="pill-badge px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-emerald-800 mb-8 inline-flex items-center gap-2 reveal shadow-sm bg-emerald-50/90 border border-emerald-200/80 backdrop-blur-sm">
+                <span class="w-2 h-2 rounded-full bg-[#22C55E] inline-block animate-pulse"></span>
+                <span>Booking Open &ndash; 2 Spots Left</span>
             </div>
-            Trusted by 30+ creators and brands worldwide
+            
+            <!-- Hero Heading: Content Built to Sell -->
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[72px] xl:text-[86px] 2xl:text-[98px] font-extrabold tracking-tight text-dark mb-6 leading-[1.05] lg:whitespace-nowrap" id="hero-heading">
+                Content Built to <span class="relative inline-block text-[#FF5A36] italic font-semibold">Sell<svg class="absolute -bottom-2.5 sm:-bottom-3 xl:-bottom-4 left-0 w-full h-3.5 sm:h-4.5 xl:h-5 text-[#FF5A36] overflow-visible" viewBox="0 0 140 14" fill="none" preserveAspectRatio="none"><path d="M2 9.5C32 5.5 110 4.5 138 8.5M12 12C42 10 102 9 128 11.5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+            </h1>
+            
+            <!-- Subheading paragraph -->
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-10 max-w-xl mx-auto leading-relaxed reveal">
+                I help entrepreneurs, businesses, and coaches turn their expertise into content that builds trust and brings in clients.
+            </p>
+            
+            <!-- CTA Button -->
+            <a href="#contact" class="btn-primary inline-flex items-center gap-2 bg-[#0A0A0A] hover:bg-black text-white px-8 py-4 rounded-full text-base sm:text-lg font-medium shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all mb-10 reveal cursor-pointer">
+                <span>Book a Free Call</span>
+                <span class="arrow">&rarr;</span>
+            </a>
+            
+            <!-- Social proof avatars and text -->
+            <div class="reveal flex items-center gap-3 justify-center text-xs sm:text-sm text-gray-500 font-medium">
+                <div class="flex -space-x-2">
+                    <img src="https://i.pravatar.cc/100?img=1" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-light object-cover" alt="Creator 1">
+                    <img src="https://i.pravatar.cc/100?img=2" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-light object-cover" alt="Creator 2">
+                    <img src="assets/scapia-logo.png" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-light bg-white object-contain p-1 shadow-xs" alt="Scapia">
+                </div>
+                <span>Trusted by 20+ creators and brands worldwide</span>
+            </div>
+
+            <!-- Mobile & Tablet Flanking Cards Preview (Side-by-Side below CTA) -->
+            <div class="lg:hidden flex items-center justify-center gap-4 sm:gap-6 mt-12 max-w-md mx-auto reveal px-2">
+                <div class="w-1/2">
+                    <img src="assets/hero-raw-card.png" alt="Raw footage in" class="w-full h-auto drop-shadow-xl">
+                </div>
+                <div class="w-1/2">
+                    <img src="assets/hero-edited-card.png" alt="Scroll-stopping videos out" class="w-full h-auto drop-shadow-xl">
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -354,7 +409,7 @@
                     <h2 class="text-3xl md:text-5xl font-bold text-light tracking-tight">Selected Projects</h2>
                 </div>
                 <p class="text-gray-400 text-sm md:text-base max-w-md">
-                    High-retention storytelling across long-form YouTube and fast-paced vertical content. Click any video to play.
+                    Long-form and short-form content built to attract, engage, and convert. Click any video to play.
                 </p>
             </div>
 
@@ -362,7 +417,7 @@
             <div class="mb-14">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-2.5 h-2.5 rounded-full bg-accent"></div>
-                    <h3 class="text-xs md:text-sm font-semibold tracking-widest uppercase text-gray-300">Horizontal &mdash; Long Form (16:9)</h3>
+                    <h3 class="text-xs md:text-sm font-semibold tracking-widest uppercase text-gray-300">Long Form </h3>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -435,7 +490,7 @@
             <div class="pt-8 border-t border-white/10">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-2.5 h-2.5 rounded-full bg-accent"></div>
-                    <h3 class="text-xs md:text-sm font-semibold tracking-widest uppercase text-gray-300">Vertical &mdash; Shorts &amp; Reels (9:16)</h3>
+                    <h3 class="text-xs md:text-sm font-semibold tracking-widest uppercase text-gray-300">Shorts &amp; Reels </h3>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -570,7 +625,7 @@
 
                     <!-- Body -->
                     <p class="reveal" style="color:#666;font-size:1rem;line-height:1.7;margin:20px 0 28px;max-width:420px;">
-                        I'm Aditya, a video editor who turns raw footage into content people actually finish watching. From long-form YouTube stories to punchy short-form cuts and polished brand films, I focus on pacing, sound, and story &mdash; so every edit feels intentional, not just trimmed.
+                        I'm Aditya, a video editor who turns raw footage into content people actually finish watching. From long-form YouTube stories to punchy short-form cuts and polished brand films, I focus on pacing, sound, and story so every edit feels intentional, not just trimmed.
                     </p>
 
                     <!-- CTA Row -->
@@ -767,9 +822,9 @@
         <!-- Header -->
         <div class="max-w-5xl mx-auto text-center mb-16 reveal">
             <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px;">
-                <span style="height:1px;width:36px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+                
                 <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;letter-spacing:0.05em;color:#FF4B26;font-weight:400;">Client Feedback</span>
-                <span style="height:1px;width:36px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+                
             </div>
             <h2 style="font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:#0A0A0A;margin-bottom:14px;">
                 Don't Just Take <em style="font-family:'Playfair Display',serif;font-style:italic;font-weight:600;">My Word</em>
@@ -858,7 +913,7 @@
                     <!-- Creator card -->
                     <div class="wa-card">
                         <div class="wa-header">
-                            <span class="wa-name">Creator</span><span class="wa-time">2:22 AM</span>
+                            <span class="wa-name">Ryan</span><span class="wa-time">2:22 AM</span>
                             <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
                         </div>
                         <div class="wa-bubble">lovely work</div>
@@ -868,7 +923,7 @@
                     <!-- Listener card -->
                     <div class="wa-card">
                         <div class="wa-header">
-                            <span class="wa-name">Listener</span><span class="wa-time">8:50 PM</span>
+                            <span class="wa-name">Austin</span><span class="wa-time">8:50 PM</span>
                             <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.05 1.475 5.764L0 24l6.39-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.64-.497-5.163-1.367l-.371-.219-3.795.861.875-3.697-.24-.386A9.941 9.941 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
                         </div>
                         <div class="wa-bubble">oh my god</div>
@@ -1066,7 +1121,7 @@
                     <!-- Step Number 02 -->
                     <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.9rem; font-weight: 600; color: #F05B92; margin-bottom: 6px;">02</div>
                     <h3 style="font-weight: 700; font-size: 1.2rem; color: #0A0A0A; margin-bottom: 12px; letter-spacing: -0.01em;">Get a First Draft</h3>
-                    <p style="color: #666; font-size: 0.92rem; line-height: 1.6; margin: 0;">I turn it around fast &mdash; usually within 48&ndash;72 hours &mdash; with pacing, color, sound, and captions already in place.</p>
+                    <p style="color: #666; font-size: 0.92rem; line-height: 1.6; margin: 0;">I turn it around fast usually within 24&ndash;48 hours with pacing, color, sound, and captions already in place.</p>
                 </div>
 
                 <!-- Orange connector arrow to Card 03 (PNG - sits ON TOP of Card 03) -->
@@ -1127,73 +1182,53 @@
             <div class="md:w-2/3 reveal">
                 <div class="divide-y divide-gray-200 border-y border-gray-200">
                     
-                    <div class="faq-item group cursor-pointer py-6">
+                    <div class="faq-item active group cursor-pointer py-6">
                         <div class="flex justify-between items-center gap-4">
-                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What's the difference between a subscription and a one-off project?</h4>
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What kind of videos do you edit ?</h4>
                             <span class="faq-icon text-gray-400 text-2xl">+</span>
                         </div>
                         <div class="faq-answer text-gray-600 leading-relaxed">
-                            A subscription covers ongoing, unlimited edit requests at a fixed monthly rate &mdash; ideal for creators posting regularly. A one-off project is a fixed-price quote for a single video or campaign.
+                            I specialize in social media content, YouTube videos, reels/shorts, talking head content, and promos for creators and businesses.
                         </div>
                     </div>
 
                     <div class="faq-item group cursor-pointer py-6">
                         <div class="flex justify-between items-center gap-4">
-                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">How fast is the turnaround?</h4>
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What do you need from me to get started ?</h4>
                             <span class="faq-icon text-gray-400 text-2xl">+</span>
                         </div>
                         <div class="faq-answer text-gray-600 leading-relaxed">
-                            Most first drafts are delivered within 48&ndash;72 hours, depending on footage length and complexity.
+                            Just send me your footage, a brief or reference style, and any assets like logos or music you want included.
                         </div>
                     </div>
 
                     <div class="faq-item group cursor-pointer py-6">
                         <div class="flex justify-between items-center gap-4">
-                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">How many requests can I make?</h4>
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">How do you handle revisions ?</h4>
                             <span class="faq-icon text-gray-400 text-2xl">+</span>
                         </div>
                         <div class="faq-answer text-gray-600 leading-relaxed">
-                            On the subscription plan, as many as you need &mdash; one video is worked on at a time to keep quality high, with a queue for the next.
+                            I include 1–2 rounds of revisions (depending on the package). I want you to be happy with the final result.
                         </div>
                     </div>
 
                     <div class="faq-item group cursor-pointer py-6">
                         <div class="flex justify-between items-center gap-4">
-                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What types of video do you edit?</h4>
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">How much do you charge per video ?</h4>
                             <span class="faq-icon text-gray-400 text-2xl">+</span>
                         </div>
                         <div class="faq-answer text-gray-600 leading-relaxed">
-                            YouTube long-form, short-form Reels/TikToks, brand films, ads, and documentary-style content.
+                            Pricing depends on the video type, length, and complexity. Videos are quoted based on the project.
                         </div>
                     </div>
 
                     <div class="faq-item group cursor-pointer py-6">
                         <div class="flex justify-between items-center gap-4">
-                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">What tools do you use?</h4>
+                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">Do you offer monthly or bulk packages ?</h4>
                             <span class="faq-icon text-gray-400 text-2xl">+</span>
                         </div>
                         <div class="faq-answer text-gray-600 leading-relaxed">
-                            Premiere Pro, DaVinci Resolve, After Effects, and industry-standard sound and color tools.
-                        </div>
-                    </div>
-
-                    <div class="faq-item group cursor-pointer py-6">
-                        <div class="flex justify-between items-center gap-4">
-                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">Can I pause the subscription?</h4>
-                            <span class="faq-icon text-gray-400 text-2xl">+</span>
-                        </div>
-                        <div class="faq-answer text-gray-600 leading-relaxed">
-                            Yes, you can pause or cancel anytime with no long-term lock-in.
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item group cursor-pointer py-6">
-                        <div class="flex justify-between items-center gap-4">
-                            <h4 class="text-lg font-medium group-hover:text-accent transition-colors">Do you offer motion graphics too?</h4>
-                            <span class="faq-icon text-gray-400 text-2xl">+</span>
-                        </div>
-                        <div class="faq-answer text-gray-600 leading-relaxed">
-                            Yes &mdash; titles, lower thirds, and light motion graphics are included in every plan.
+                            Yes. I offer discounted rates for clients who need regular editing weekly content, multiple videos, or ongoing work.
                         </div>
                     </div>
 
@@ -1207,9 +1242,9 @@
         <!-- Text header — stays narrow -->
         <div class="max-w-3xl mx-auto mb-10 reveal">
             <div class="eyebrow mb-6 flex items-center justify-center gap-4">
-                <span style="height:1px;width:48px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+                
                 2 spots available
-                <span style="height:1px;width:48px;background:#FF4B26;opacity:0.4;display:inline-block;"></span>
+                
             </div>
             
             <h2 class="text-5xl md:text-7xl font-semibold tracking-tight text-light mb-8">Let's Connect</h2>
