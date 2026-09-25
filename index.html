@@ -368,94 +368,64 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Horizontal Video 1 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
-                         onclick="openVideoModal('https://youtu.be/BTAbs0H6bgg', 'horizontal')"
+                         onclick="openVideoCarousel('horizontal', 0)"
                          data-video-url="https://youtu.be/BTAbs0H6bgg"
                          data-video-aspect="horizontal">
                         <img src="https://i.ytimg.com/vi/BTAbs0H6bgg/hqdefault.jpg"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                              alt="Avey TV Assignment 02">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
                         
-                        <!-- Badges -->
-                        <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 pointer-events-none">
                             <span class="bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium border border-white/10">YouTube Long-Form</span>
-                            <span class="bg-accent/90 text-white text-xs px-2.5 py-1 rounded-full font-medium">Assignment 02</span>
                         </div>
 
                         <!-- Center Play Button -->
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pointer-events-none">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-
-                        <!-- Bottom Title & Info -->
-                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
-                            <h4 class="text-white font-semibold text-base md:text-lg leading-snug group-hover:text-accent transition-colors">Avey TV &mdash; Assignment 02</h4>
-                            <p class="text-gray-400 text-xs md:text-sm mt-1 flex items-center justify-between">
-                                <span>Pacing, Storytelling &amp; Sound</span>
-                                <span class="text-accent/90 text-xs font-medium">Watch Video &rarr;</span>
-                            </p>
                         </div>
                     </div>
 
                     <!-- Horizontal Video 2 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
-                         onclick="openVideoModal('https://youtu.be/GDDuItNbUmM', 'horizontal')"
+                         onclick="openVideoCarousel('horizontal', 1)"
                          data-video-url="https://youtu.be/GDDuItNbUmM"
                          data-video-aspect="horizontal">
                         <img src="https://i.ytimg.com/vi/GDDuItNbUmM/hqdefault.jpg"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                              alt="Avey TV Assignment 01">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
                         
-                        <!-- Badges -->
-                        <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 pointer-events-none">
                             <span class="bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium border border-white/10">YouTube Long-Form</span>
-                            <span class="bg-accent/90 text-white text-xs px-2.5 py-1 rounded-full font-medium">Assignment 01</span>
                         </div>
 
                         <!-- Center Play Button -->
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pointer-events-none">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-
-                        <!-- Bottom Title & Info -->
-                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
-                            <h4 class="text-white font-semibold text-base md:text-lg leading-snug group-hover:text-accent transition-colors">Avey TV &mdash; Assignment 01</h4>
-                            <p class="text-gray-400 text-xs md:text-sm mt-1 flex items-center justify-between">
-                                <span>Dynamic Cuts &amp; Visual Flow</span>
-                                <span class="text-accent/90 text-xs font-medium">Watch Video &rarr;</span>
-                            </p>
                         </div>
                     </div>
 
                     <!-- Horizontal Video 3 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
-                         onclick="openVideoModal('https://youtu.be/AA1T1q3ROIA', 'horizontal')"
+                         onclick="openVideoCarousel('horizontal', 2)"
                          data-video-url="https://youtu.be/AA1T1q3ROIA"
                          data-video-aspect="horizontal">
                         <img src="https://i.ytimg.com/vi/AA1T1q3ROIA/hqdefault.jpg"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                              alt="Green Background Chroma Key Composite">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
                         
-                        <!-- Badges -->
-                        <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 pointer-events-none">
                             <span class="bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium border border-white/10">VFX &amp; Composite</span>
-                            <span class="bg-accent/90 text-white text-xs px-2.5 py-1 rounded-full font-medium">Chroma Key</span>
                         </div>
 
                         <!-- Center Play Button -->
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pointer-events-none">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-
-                        <!-- Bottom Title & Info -->
-                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
-                            <h4 class="text-white font-semibold text-base md:text-lg leading-snug group-hover:text-accent transition-colors">Chroma Key &amp; Visual Composite</h4>
-                            <p class="text-gray-400 text-xs md:text-sm mt-1 flex items-center justify-between">
-                                <span>Background Replacement &amp; Motion FX</span>
-                                <span class="text-accent/90 text-xs font-medium">Watch Video &rarr;</span>
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -471,94 +441,64 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
                     <!-- Vertical Video 1 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-[9/16] bg-[#151515] border border-white/10 hover-lift shadow-xl"
-                         onclick="openVideoModal('https://youtube.com/shorts/cCahe8jHl4w', 'vertical')"
+                         onclick="openVideoCarousel('vertical', 0)"
                          data-video-url="https://youtube.com/shorts/cCahe8jHl4w"
                          data-video-aspect="vertical">
                         <img src="https://i.ytimg.com/vi/cCahe8jHl4w/hqdefault.jpg"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                              alt="Devin Jatho Style Short">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/20 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
                         
-                        <!-- Badges -->
-                        <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 pointer-events-none">
                             <span class="bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium border border-white/10">YouTube Short</span>
-                            <span class="bg-accent/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold">Devin Jatho</span>
                         </div>
 
                         <!-- Center Play Button -->
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pointer-events-none">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-
-                        <!-- Bottom Title & Info -->
-                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
-                            <h4 class="text-white font-semibold text-base leading-snug group-hover:text-accent transition-colors">Devin Jatho Style Edit</h4>
-                            <p class="text-gray-400 text-xs mt-1 flex items-center justify-between">
-                                <span>Kinetic Text &amp; Fast Zooms</span>
-                                <span class="text-accent/90 text-xs font-medium">Watch &rarr;</span>
-                            </p>
                         </div>
                     </div>
 
                     <!-- Vertical Video 2 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-[9/16] bg-[#151515] border border-white/10 hover-lift shadow-xl"
-                         onclick="openVideoModal('https://youtube.com/shorts/Lew-x_vODL0', 'vertical')"
+                         onclick="openVideoCarousel('vertical', 1)"
                          data-video-url="https://youtube.com/shorts/Lew-x_vODL0"
                          data-video-aspect="vertical">
                         <img src="https://i.ytimg.com/vi/Lew-x_vODL0/hqdefault.jpg"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                              alt="Urban Wildlife Breakdown Short">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/20 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
                         
-                        <!-- Badges -->
-                        <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 pointer-events-none">
                             <span class="bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium border border-white/10">Documentary Reel</span>
-                            <span class="bg-accent/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold">Story Hook</span>
                         </div>
 
                         <!-- Center Play Button -->
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pointer-events-none">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-
-                        <!-- Bottom Title & Info -->
-                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
-                            <h4 class="text-white font-semibold text-base leading-snug group-hover:text-accent transition-colors">Urban Wildlife Breakdown</h4>
-                            <p class="text-gray-400 text-xs mt-1 flex items-center justify-between">
-                                <span>High-Retention Story Hook</span>
-                                <span class="text-accent/90 text-xs font-medium">Watch &rarr;</span>
-                            </p>
                         </div>
                     </div>
 
                     <!-- Vertical Video 3 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-[9/16] bg-[#151515] border border-white/10 hover-lift shadow-xl"
-                         onclick="openVideoModal('https://youtube.com/shorts/yKMJvJL6qoA', 'vertical')"
+                         onclick="openVideoCarousel('vertical', 2)"
                          data-video-url="https://youtube.com/shorts/yKMJvJL6qoA"
                          data-video-aspect="vertical">
                         <img src="https://i.ytimg.com/vi/yKMJvJL6qoA/hqdefault.jpg"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                              alt="DGF Project Fast-Paced Edit">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/20 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
                         
-                        <!-- Badges -->
-                        <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 pointer-events-none">
                             <span class="bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium border border-white/10">Reels / Shorts</span>
-                            <span class="bg-accent/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold">Sound Design</span>
                         </div>
 
                         <!-- Center Play Button -->
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pointer-events-none">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-
-                        <!-- Bottom Title & Info -->
-                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
-                            <h4 class="text-white font-semibold text-base leading-snug group-hover:text-accent transition-colors">DGF Project &mdash; Fast-Paced Edit</h4>
-                            <p class="text-gray-400 text-xs mt-1 flex items-center justify-between">
-                                <span>SFX, Pacing &amp; Motion</span>
-                                <span class="text-accent/90 text-xs font-medium">Watch &rarr;</span>
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -1309,20 +1249,68 @@
         </footer>
     </section>
  
-    <!-- Video Lightbox Modal -->
-    <div id="video-modal" class="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300" style="display: none;" role="dialog" aria-modal="true" aria-label="Video Player">
-        <!-- Close Button -->
-        <button id="video-modal-close" onclick="closeVideoModal()" class="absolute top-5 right-5 z-30 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:scale-105 cursor-pointer shadow-lg" aria-label="Close video player">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
+    <!-- Video Lightbox Modal with Carousel -->
+    <div id="video-modal" class="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-2 sm:gap-3.5 p-2 sm:p-4 opacity-0 pointer-events-none transition-opacity duration-300" style="display: none;" role="dialog" aria-modal="true" aria-label="Video Player">
+        
+        <!-- Top Control Bar -->
+        <div id="modal-top-bar" class="w-full flex items-center justify-between gap-2 z-30 px-1 sm:px-2 transition-all duration-300 pointer-events-none">
+            <!-- Format Switcher & Counter -->
+            <div class="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
+                <div class="inline-flex bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/15 text-xs shadow-lg">
+                    <button type="button" id="tab-horizontal" onclick="switchVideoCollection('horizontal')" class="px-3 sm:px-4 py-1 rounded-full font-medium transition-all text-white bg-accent shadow-sm cursor-pointer text-xs">
+                        Horizontal
+                    </button>
+                    <button type="button" id="tab-vertical" onclick="switchVideoCollection('vertical')" class="px-3 sm:px-4 py-1 rounded-full font-medium transition-all text-gray-400 hover:text-white cursor-pointer text-xs">
+                        Vertical (Shorts)
+                    </button>
+                </div>
+                <span id="modal-video-counter" class="text-xs text-gray-300 font-mono bg-white/10 border border-white/15 px-2.5 py-1 rounded-full shadow-lg">
+                    1 / 3
+                </span>
+            </div>
 
-        <!-- Dynamic Container (Sized based on horizontal vs vertical) -->
-        <div id="video-modal-container" class="relative w-full max-w-4xl aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/20 transition-all duration-300">
-            <iframe id="video-modal-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <!-- Right Controls: Watch on YouTube + Close -->
+            <div class="flex items-center gap-2 pointer-events-auto">
+                <a id="modal-youtube-link" href="#" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 text-xs text-gray-300 hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-full transition-all shadow-lg" title="Open directly on YouTube">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-red-500"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Watch on YouTube</span>
+                </a>
+                <button id="video-modal-close" onclick="closeVideoModal()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/25 active:scale-95 text-white flex items-center justify-center transition-all hover:scale-105 cursor-pointer border border-white/15 shadow-lg" aria-label="Close video player">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
         </div>
+
+        <!-- Center Stage: Prev Button + Player Container + Next Button -->
+        <div id="video-modal-stage" class="relative w-full max-w-[1600px] flex items-center justify-center gap-2 sm:gap-4 md:gap-6 flex-shrink-0 pointer-events-none">
+            <!-- Prev Arrow Button -->
+            <button id="modal-prev-btn" onclick="navVideoCarousel(-1)" class="z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-13 md:h-13 rounded-full bg-black/60 sm:bg-white/10 hover:bg-black/80 sm:hover:bg-white/25 active:scale-95 text-white flex items-center justify-center transition-all border border-white/20 shadow-2xl hover:scale-110 cursor-pointer flex-shrink-0 absolute left-2 sm:relative sm:left-auto pointer-events-auto" aria-label="Previous video">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+
+            <!-- Video Container (sized dynamically to fit screen seamlessly) -->
+            <div id="video-modal-container" class="relative bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.9)] border border-white/20 transition-all duration-300 flex-shrink-0 pointer-events-auto">
+                <iframe id="video-modal-iframe" class="w-full h-full block" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <!-- Next Arrow Button -->
+            <button id="modal-next-btn" onclick="navVideoCarousel(1)" class="z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/60 sm:bg-white/10 hover:bg-black/80 sm:hover:bg-white/25 active:scale-95 text-white flex items-center justify-center transition-all border border-white/20 shadow-2xl hover:scale-110 cursor-pointer flex-shrink-0 absolute right-2 sm:relative sm:right-auto pointer-events-auto" aria-label="Next video">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Bottom Carousel Thumbnail Strip -->
+        <div id="modal-carousel-strip" class="w-full max-w-2xl flex items-center justify-center gap-2 sm:gap-3 py-1 z-30 overflow-x-auto pointer-events-none">
+            <!-- Dynamically populated thumbnail pills -->
+        </div>
+
     </div>
 
     <!-- Scripts -->
@@ -1427,9 +1415,11 @@
             }
             if (videoModal) {
                 videoModal.addEventListener('click', (e) => {
-                    if (e.target === videoModal) {
-                        window.closeVideoModal();
+                    // Do not close if clicking inside the video container or any interactive control
+                    if (e.target.closest('#video-modal-container') || e.target.closest('button') || e.target.closest('a')) {
+                        return;
                     }
+                    window.closeVideoModal();
                 });
             }
             document.addEventListener('keydown', (e) => {
@@ -1439,65 +1429,239 @@
             });
         });
 
-        // Global Video Modal Functions
-        function parseVideoUrl(input) {
-            if (!input) return '';
-            const trimmed = input.trim();
-            if (trimmed.includes('embed/')) return trimmed;
+        // Video Carousel & Lightbox Playlists
+        const VIDEO_PLAYLISTS = {
+            horizontal: [
+                {
+                    id: 'BTAbs0H6bgg',
+                    url: 'https://youtu.be/BTAbs0H6bgg',
+                    aspect: 'horizontal',
+                    title: 'Avey TV — Assignment 02',
+                    tag: 'YouTube Long-Form',
+                    thumb: 'https://i.ytimg.com/vi/BTAbs0H6bgg/hqdefault.jpg'
+                },
+                {
+                    id: 'GDDuItNbUmM',
+                    url: 'https://youtu.be/GDDuItNbUmM',
+                    aspect: 'horizontal',
+                    title: 'Avey TV — Assignment 01',
+                    tag: 'YouTube Long-Form',
+                    thumb: 'https://i.ytimg.com/vi/GDDuItNbUmM/hqdefault.jpg'
+                },
+                {
+                    id: 'AA1T1q3ROIA',
+                    url: 'https://youtu.be/AA1T1q3ROIA',
+                    aspect: 'horizontal',
+                    title: 'Green Background Chroma Key Composite',
+                    tag: 'VFX & Composite',
+                    thumb: 'https://i.ytimg.com/vi/AA1T1q3ROIA/hqdefault.jpg'
+                }
+            ],
+            vertical: [
+                {
+                    id: 'cCahe8jHl4w',
+                    url: 'https://youtube.com/shorts/cCahe8jHl4w',
+                    aspect: 'vertical',
+                    title: 'Devin Jatho Style Short',
+                    tag: 'YouTube Short',
+                    thumb: 'https://i.ytimg.com/vi/cCahe8jHl4w/hqdefault.jpg'
+                },
+                {
+                    id: 'Lew-x_vODL0',
+                    url: 'https://youtube.com/shorts/Lew-x_vODL0',
+                    aspect: 'vertical',
+                    title: 'Urban Wildlife Breakdown Short',
+                    tag: 'Documentary Reel',
+                    thumb: 'https://i.ytimg.com/vi/Lew-x_vODL0/hqdefault.jpg'
+                },
+                {
+                    id: 'yKMJvJL6qoA',
+                    url: 'https://youtube.com/shorts/yKMJvJL6qoA',
+                    aspect: 'vertical',
+                    title: 'DGF Project Fast-Paced Edit',
+                    tag: 'Reels / Shorts',
+                    thumb: 'https://i.ytimg.com/vi/yKMJvJL6qoA/hqdefault.jpg'
+                }
+            ]
+        };
+
+        let currentCategory = 'horizontal';
+        let currentIndex = 0;
+
+        function renderVideoCarouselStrip() {
+            const list = VIDEO_PLAYLISTS[currentCategory] || [];
+            const strip = document.getElementById('modal-carousel-strip');
+            const counter = document.getElementById('modal-video-counter');
+            const ytLink = document.getElementById('modal-youtube-link');
+            const tabH = document.getElementById('tab-horizontal');
+            const tabV = document.getElementById('tab-vertical');
             
-            // YouTube Shorts: youtube.com/shorts/VIDEO_ID
-            const shortsMatch = trimmed.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
-            if (shortsMatch) return `https://www.youtube.com/embed/${shortsMatch[1]}?autoplay=1&rel=0&playsinline=1`;
-            
-            // YouTube Watch: youtube.com/watch?v=VIDEO_ID
-            const watchMatch = trimmed.match(/[?&]v=([a-zA-Z0-9_-]+)/);
-            if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}?autoplay=1&rel=0&playsinline=1`;
-            
-            // Shortened youtu.be/VIDEO_ID
-            const youtuMatch = trimmed.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
-            if (youtuMatch) return `https://www.youtube.com/embed/${youtuMatch[1]}?autoplay=1&rel=0&playsinline=1`;
-            
-            // Vimeo: vimeo.com/VIDEO_ID
-            const vimeoMatch = trimmed.match(/vimeo\.com\/(\d+)/);
-            if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`;
-            
-            // Raw 11-character YouTube ID
-            if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
-                return `https://www.youtube.com/embed/${trimmed}?autoplay=1&rel=0&playsinline=1`;
+            if (counter) {
+                counter.textContent = `${currentIndex + 1} / ${list.length}`;
             }
-            
-            return trimmed;
+
+            if (tabH && tabV) {
+                if (currentCategory === 'horizontal') {
+                    tabH.className = 'px-3.5 py-1 rounded-full font-medium transition-all text-white bg-accent shadow-sm cursor-pointer';
+                    tabV.className = 'px-3.5 py-1 rounded-full font-medium transition-all text-gray-400 hover:text-white cursor-pointer';
+                } else {
+                    tabV.className = 'px-3.5 py-1 rounded-full font-medium transition-all text-white bg-accent shadow-sm cursor-pointer';
+                    tabH.className = 'px-3.5 py-1 rounded-full font-medium transition-all text-gray-400 hover:text-white cursor-pointer';
+                }
+            }
+
+            const currentVid = list[currentIndex];
+            if (ytLink && currentVid) {
+                ytLink.href = currentVid.url;
+            }
+
+            if (strip) {
+                const isVert = currentCategory === 'vertical';
+                strip.innerHTML = list.map((item, idx) => {
+                    const isActive = idx === currentIndex;
+                    return `
+                        <button type="button" onclick="goToVideoIndex(${idx})"
+                                class="relative rounded-xl overflow-hidden border-2 transition-all cursor-pointer flex-shrink-0 pointer-events-auto ${isActive ? 'border-[#FF4B26] shadow-[0_0_15px_rgba(255,75,38,0.5)] scale-105 opacity-100' : 'border-white/20 opacity-50 hover:opacity-90 hover:border-white/40'}"
+                                style="width:${isVert ? '36px' : '76px'}; height:${isVert ? '52px' : '44px'};"
+                                title="${item.title}"
+                                aria-label="Go to video ${idx + 1}">
+                            <img src="${item.thumb}" class="w-full h-full object-cover" alt="${item.title}">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </button>
+                    `;
+                }).join('');
+            }
         }
 
-        window.openVideoModal = function(url, aspect) {
-            const videoModal = document.getElementById('video-modal');
+        function updateModalDimensions() {
             const modalContainer = document.getElementById('video-modal-container');
-            const modalIframe = document.getElementById('video-modal-iframe');
-            if (!videoModal || !modalIframe || !modalContainer) return;
-            
-            const embedUrl = parseVideoUrl(url);
-            
-            if (aspect === 'vertical') {
-                modalContainer.style.maxWidth = '380px';
-                modalContainer.style.width = '100%';
+            const topBar = document.getElementById('modal-top-bar');
+            if (!modalContainer) return;
+
+            const list = VIDEO_PLAYLISTS[currentCategory] || [];
+            const video = list[currentIndex];
+            if (!video) return;
+
+            const isVertical = video.aspect === 'vertical';
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const isMobile = vw < 640;
+
+            // Height reserved for top bar, bottom thumbnail strip, and gaps
+            const reservedHeight = isMobile ? 112 : 132;
+            const maxAvailableHeight = Math.max(220, vh - reservedHeight);
+
+            let targetWidth, targetHeight;
+
+            if (isVertical) {
+                // Vertical Shorts (9:16)
+                // Dynamically expand up to 82% of viewport height (or up to 920px on tall screens)
+                targetHeight = Math.min(maxAvailableHeight, Math.floor(vh * 0.82), 920);
+                targetWidth = Math.round(targetHeight * (9 / 16));
+
+                // Constrain width on narrower viewports with room for side margins/arrows
+                const maxAllowedWidth = isMobile ? (vw - 28) : (vw - 160);
+                if (targetWidth > maxAllowedWidth) {
+                    targetWidth = maxAllowedWidth;
+                    targetHeight = Math.round(targetWidth * (16 / 9));
+                }
+
+                modalContainer.style.width = `${targetWidth}px`;
+                modalContainer.style.height = `${targetHeight}px`;
+                modalContainer.style.maxWidth = '100%';
+                modalContainer.style.maxHeight = `${targetHeight}px`;
                 modalContainer.style.aspectRatio = '9 / 16';
-                modalContainer.style.maxHeight = '85vh';
-                modalContainer.className = 'relative w-full max-w-[380px] aspect-[9/16] max-h-[85vh] bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/20 transition-all duration-300';
             } else {
-                modalContainer.style.maxWidth = '920px';
-                modalContainer.style.width = '100%';
+                // Horizontal Videos (16:9)
+                // True cinema scale: expand up to 1500px wide, filling available height comfortably
+                targetHeight = Math.min(maxAvailableHeight, Math.floor(vh * 0.82));
+                targetWidth = Math.round(targetHeight * (16 / 9));
+
+                const maxAllowedWidth = isMobile ? (vw - 24) : Math.min(vw - 160, 1500);
+                if (targetWidth > maxAllowedWidth) {
+                    targetWidth = maxAllowedWidth;
+                    targetHeight = Math.round(targetWidth * (9 / 16));
+                }
+
+                modalContainer.style.width = `${targetWidth}px`;
+                modalContainer.style.height = `${targetHeight}px`;
+                modalContainer.style.maxWidth = '100%';
+                modalContainer.style.maxHeight = `${targetHeight}px`;
                 modalContainer.style.aspectRatio = '16 / 9';
-                modalContainer.style.maxHeight = '85vh';
-                modalContainer.className = 'relative w-full max-w-4xl aspect-video bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/20 transition-all duration-300';
             }
+
+            // Sync top bar width with the video stage for an aesthetically balanced frame
+            if (topBar) {
+                const minBarW = isMobile ? Math.min(vw - 20, 320) : 400;
+                topBar.style.maxWidth = `${Math.max(minBarW, targetWidth)}px`;
+            }
+        }
+
+        function loadCurrentVideo() {
+            const list = VIDEO_PLAYLISTS[currentCategory] || [];
+            if (!list.length) return;
+            if (currentIndex < 0) currentIndex = list.length - 1;
+            if (currentIndex >= list.length) currentIndex = 0;
             
-            modalIframe.src = embedUrl;
+            const video = list[currentIndex];
+            const modalIframe = document.getElementById('video-modal-iframe');
+            if (!modalIframe) return;
+
+            updateModalDimensions();
+
+            const originParam = window.location.protocol.startsWith('http') ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
+            modalIframe.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&playsinline=1${originParam}`;
+            
+            renderVideoCarouselStrip();
+        }
+
+        window.openVideoCarousel = function(category, index) {
+            const videoModal = document.getElementById('video-modal');
+            if (!videoModal) return;
+
+            currentCategory = category || 'horizontal';
+            currentIndex = typeof index === 'number' ? index : 0;
+
+            loadCurrentVideo();
+
             videoModal.style.display = 'flex';
             requestAnimationFrame(() => {
                 videoModal.classList.remove('opacity-0', 'pointer-events-none');
                 videoModal.classList.add('opacity-100', 'pointer-events-auto');
+                updateModalDimensions();
             });
             document.body.style.overflow = 'hidden';
+        };
+
+        window.navVideoCarousel = function(direction) {
+            const list = VIDEO_PLAYLISTS[currentCategory] || [];
+            if (!list.length) return;
+            currentIndex = (currentIndex + direction + list.length) % list.length;
+            loadCurrentVideo();
+        };
+
+        window.goToVideoIndex = function(idx) {
+            currentIndex = idx;
+            loadCurrentVideo();
+        };
+
+        window.switchVideoCollection = function(category) {
+            if (currentCategory === category) return;
+            currentCategory = category;
+            currentIndex = 0;
+            loadCurrentVideo();
+        };
+
+        window.openVideoModal = function(url, aspect) {
+            // Find in collections
+            for (const cat in VIDEO_PLAYLISTS) {
+                const foundIdx = VIDEO_PLAYLISTS[cat].findIndex(v => v.url === url || (v.id && url.includes(v.id)));
+                if (foundIdx !== -1) {
+                    openVideoCarousel(cat, foundIdx);
+                    return;
+                }
+            }
+            openVideoCarousel(aspect === 'vertical' ? 'vertical' : 'horizontal', 0);
         };
 
         window.closeVideoModal = function() {
@@ -1513,6 +1677,52 @@
             }, 200);
             document.body.style.overflow = '';
         };
+
+        // Window resize and orientation change handlers
+        window.addEventListener('resize', () => {
+            const videoModal = document.getElementById('video-modal');
+            if (videoModal && videoModal.style.display !== 'none') {
+                updateModalDimensions();
+            }
+        });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateModalDimensions, 100);
+        });
+
+        // Keyboard navigation (arrows + escape)
+        document.addEventListener('keydown', (e) => {
+            const videoModal = document.getElementById('video-modal');
+            if (!videoModal || videoModal.style.display === 'none') return;
+            if (e.key === 'ArrowRight') {
+                navVideoCarousel(1);
+            } else if (e.key === 'ArrowLeft') {
+                navVideoCarousel(-1);
+            } else if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+        // Touch swipe support for mobile
+        (() => {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const videoModal = document.getElementById('video-modal');
+            if (!videoModal) return;
+            videoModal.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            videoModal.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        navVideoCarousel(1); // swipe left
+                    } else {
+                        navVideoCarousel(-1); // swipe right
+                    }
+                }
+            }, { passive: true });
+        })();
     </script>
     <!-- Calendly widget assets -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
