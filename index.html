@@ -512,7 +512,7 @@
                     <h3 class="text-xs md:text-sm font-semibold tracking-widest uppercase text-gray-300">Long Form </h3>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     <!-- Horizontal Video 1 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
                          onclick="openVideoCarousel('horizontal', 0)"
@@ -558,6 +558,27 @@
                     <!-- Horizontal Video 3 -->
                     <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
                          onclick="openVideoCarousel('horizontal', 2)"
+                         data-video-url="assets/ai-sales-coach.mp4"
+                         data-video-aspect="horizontal">
+                        <img src="assets/ai-sales-coach-thumb.jpg"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                             alt="I Built an AI Sales Coach That Trains You to Close More Deals">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
+                        
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 pointer-events-none">
+                            <span class="bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium border border-white/10">AI Video Edit</span>
+                        </div>
+
+                        <!-- Center Play Button -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pointer-events-none">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        </div>
+                    </div>
+
+                    <!-- Horizontal Video 4 -->
+                    <div class="video-card group cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden relative aspect-video bg-[#151515] border border-white/10 hover-lift shadow-xl"
+                         onclick="openVideoCarousel('horizontal', 3)"
                          data-video-url="https://youtu.be/pN4n5i2aFF4"
                          data-video-aspect="horizontal">
                         <img src="https://i.ytimg.com/vi/pN4n5i2aFF4/hqdefault.jpg"
@@ -1470,9 +1491,11 @@
                 </svg>
             </button>
 
-            <!-- Video Container (sized dynamically to fit screen seamlessly) -->
             <div id="video-modal-container" class="relative bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.9)] border border-white/20 transition-all duration-300 flex-shrink-0 pointer-events-auto">
                 <iframe id="video-modal-iframe" class="w-full h-full block" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <video id="video-modal-player" class="w-full h-full block object-contain bg-black hidden" controls playsinline preload="auto">
+                    Your browser does not support HTML5 video.
+                </video>
             </div>
 
             <!-- Next Arrow Button -->
@@ -1634,6 +1657,14 @@
                     thumb: 'https://i.ytimg.com/vi/VetHHoDZuUU/hqdefault.jpg'
                 },
                 {
+                    type: 'mp4',
+                    url: 'assets/ai-sales-coach.mp4',
+                    aspect: 'horizontal',
+                    title: 'I Built an AI Sales Coach That Trains You to Close More Deals',
+                    tag: 'AI Video Edit',
+                    thumb: 'assets/ai-sales-coach-thumb.jpg'
+                },
+                {
                     id: 'pN4n5i2aFF4',
                     url: 'https://youtu.be/pN4n5i2aFF4',
                     aspect: 'horizontal',
@@ -1699,7 +1730,12 @@
 
             const currentVid = list[currentIndex];
             if (ytLink && currentVid) {
-                ytLink.href = currentVid.url;
+                if (currentVid.type === 'mp4' || (currentVid.url && currentVid.url.endsWith('.mp4'))) {
+                    ytLink.style.display = 'none';
+                } else {
+                    ytLink.style.display = '';
+                    ytLink.href = currentVid.url;
+                }
             }
 
             if (strip) {
@@ -1791,12 +1827,45 @@
             
             const video = list[currentIndex];
             const modalIframe = document.getElementById('video-modal-iframe');
-            if (!modalIframe) return;
+            const modalVideoPlayer = document.getElementById('video-modal-player');
+            const ytLink = document.getElementById('modal-youtube-link');
 
             updateModalDimensions();
 
-            const originParam = window.location.protocol.startsWith('http') ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
-            modalIframe.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&playsinline=1${originParam}`;
+            if (video.type === 'mp4' || (video.url && video.url.endsWith('.mp4'))) {
+                // MP4 Local Video Playback
+                if (modalIframe) {
+                    modalIframe.src = '';
+                    modalIframe.classList.add('hidden');
+                }
+                if (modalVideoPlayer) {
+                    modalVideoPlayer.classList.remove('hidden');
+                    modalVideoPlayer.src = video.url;
+                    modalVideoPlayer.currentTime = 0;
+                    modalVideoPlayer.play().catch(err => {
+                        console.log('Autoplay handled:', err);
+                    });
+                }
+                if (ytLink) {
+                    ytLink.style.display = 'none';
+                }
+            } else {
+                // YouTube Embed Playback
+                if (modalVideoPlayer) {
+                    modalVideoPlayer.pause();
+                    modalVideoPlayer.src = '';
+                    modalVideoPlayer.classList.add('hidden');
+                }
+                if (modalIframe) {
+                    modalIframe.classList.remove('hidden');
+                    const originParam = window.location.protocol.startsWith('http') ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
+                    modalIframe.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&playsinline=1${originParam}`;
+                }
+                if (ytLink) {
+                    ytLink.style.display = '';
+                    ytLink.href = video.url;
+                }
+            }
             
             renderVideoCarouselStrip();
         }
@@ -1805,8 +1874,16 @@
             const videoModal = document.getElementById('video-modal');
             if (!videoModal) return;
 
-            currentCategory = category || 'horizontal';
-            currentIndex = typeof index === 'number' ? index : 0;
+            const targetCategory = category || 'horizontal';
+            const targetIndex = typeof index === 'number' ? index : 0;
+
+            const isAlreadyOpen = videoModal.style.display === 'flex' && 
+                                  currentCategory === targetCategory && 
+                                  currentIndex === targetIndex;
+            if (isAlreadyOpen) return;
+
+            currentCategory = targetCategory;
+            currentIndex = targetIndex;
 
             loadCurrentVideo();
 
@@ -1841,7 +1918,7 @@
         window.openVideoModal = function(url, aspect) {
             // Find in collections
             for (const cat in VIDEO_PLAYLISTS) {
-                const foundIdx = VIDEO_PLAYLISTS[cat].findIndex(v => v.url === url || (v.id && url.includes(v.id)));
+                const foundIdx = VIDEO_PLAYLISTS[cat].findIndex(v => v.url === url || (v.id && url && url.includes(v.id)));
                 if (foundIdx !== -1) {
                     openVideoCarousel(cat, foundIdx);
                     return;
@@ -1853,9 +1930,15 @@
         window.closeVideoModal = function() {
             const videoModal = document.getElementById('video-modal');
             const modalIframe = document.getElementById('video-modal-iframe');
-            if (!videoModal || !modalIframe) return;
+            const modalVideoPlayer = document.getElementById('video-modal-player');
+            if (!videoModal) return;
             
-            modalIframe.src = '';
+            if (modalIframe) modalIframe.src = '';
+            if (modalVideoPlayer) {
+                modalVideoPlayer.pause();
+                modalVideoPlayer.src = '';
+            }
+
             videoModal.classList.remove('opacity-100', 'pointer-events-auto');
             videoModal.classList.add('opacity-0', 'pointer-events-none');
             setTimeout(() => {
